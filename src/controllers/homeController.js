@@ -11,7 +11,7 @@ const homeController = {
         // res.render("index", {
         //   users: multipleMongooseToObject(users),
         // });
-        res.json(users);
+        res.json(multipleMongooseToObject(users));
       })
       .catch((err) => next(err));
   },
