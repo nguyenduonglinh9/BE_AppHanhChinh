@@ -9,7 +9,11 @@ const cors = require("cors");
 require("./configs/passport");
 var app = express();
 //cors
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://127.0.0.1:3001",
+  })
+);
 
 app.use(require("body-parser").urlencoded({ extended: true }));
 app.use(

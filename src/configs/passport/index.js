@@ -15,8 +15,7 @@ passport.use(
     {
       clientID: keys.googleClientID, // Your Credentials here.
       clientSecret: keys.googleClientSecret, // Your Credentials here.
-      callbackURL: "/auth/callback",
-      passReqToCallback: true,
+      callbackURL: "https://ndl-be-apphanhchinh.onrender.com/auth/callback",
     },
     async (request, accessToken, refreshToken, profile, done) => {
       try {
