@@ -11,10 +11,17 @@ const userController = {
   }),
   success: function (req, res, next) {
     if (!req.user) res.redirect("/auth/callback/failure");
-    res.send(req.user);
+    res.json({
+      code: 200,
+      message: "Đăng Nhập Thành Công !",
+      infor: req.user,
+    });
   },
   failure: function (req, res, next) {
-    res.send("Error");
+    res.json({
+      code: 500,
+      message: "Lỗi Máy Chủ Vui Lòng Thử Lại !",
+    });
   },
 };
 

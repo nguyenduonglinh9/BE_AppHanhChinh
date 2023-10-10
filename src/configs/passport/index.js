@@ -28,17 +28,20 @@ passport.use(
         const isExistUser = await User.findOne({ googleID: profile.id });
 
         if (isExistUser) {
-          return done(null, isExistUser);
+          return done(null, { ...isExistUser._doc, accessToken: accessToken });
         } else {
           const newUser = new User({
             googleID: profile.id,
             email: profile.emails[0].value,
             name: profile.name.familyName + " " + profile.name.givenName,
+            createdAt: Date.now(),
+            role: null,
+            imageURL: profile.picture,
           });
 
           await newUser.save();
 
-          done(null, newUser);
+          done(null, { ...newUser._doc, accessToken: accessToken });
         }
       } catch (error) {
         done(error, false);
