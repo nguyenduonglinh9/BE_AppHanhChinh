@@ -2,10 +2,13 @@ const mongoose = require("mongoose");
 
 async function connect() {
   try {
-    await mongoose.connect("mongodb://127.0.0.1:27017/APPHANHCHINH", {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(
+      "mongodb+srv://duonglinh:Linh201198@cluster0.9papmkm.mongodb.net/APPHANHCHINH",
+      {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      }
+    );
     console.log("Connect Successfully !");
   } catch (error) {
     console.log("Connect Failed !");
