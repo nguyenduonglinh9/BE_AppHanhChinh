@@ -5,6 +5,7 @@ const path = require("path");
 const db = require("./configs/DB");
 const route = require("./routes");
 const port = 3000;
+const cors = require("cors");
 require("./configs/passport");
 var app = express();
 app.use(require("body-parser").urlencoded({ extended: true }));
@@ -18,6 +19,8 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+//cors
+app.use(cors());
 //connect to db
 db.connect();
 //static file

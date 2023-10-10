@@ -28,6 +28,7 @@
   "homepage": "https://github.com/nguyenduonglinh9/BE_AppHanhChinh#readme",
   "dependencies": {
     "cookie-session": "^2.0.0",
+    "cors": "^2.8.5",
     "express": "^4.18.2",
     "express-handlebars": "^6.0.6",
     "express-session": "^1.17.3",
