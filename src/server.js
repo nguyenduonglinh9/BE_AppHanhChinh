@@ -6,14 +6,13 @@ const db = require("./configs/DB");
 const route = require("./routes");
 const port = 3000;
 const cors = require("cors");
+const cookieSession = require("cookie-session");
+const keys = require("./key");
 require("./configs/passport");
 var app = express();
 //cors
-app.use(
-  cors({
-    origin: "http://127.0.0.1:3001",
-  })
-);
+
+// app.use(cors());
 
 app.use(require("body-parser").urlencoded({ extended: true }));
 app.use(
@@ -48,15 +47,14 @@ app.set("views", path.join(__dirname, "views"));
 route(app);
 
 //passport
-// app.use(
-//   session({
-//     resave: false,
-//     saveUninitialized: true,
-//     secret: "SECRET",
-//   })
-// );
-// app.use(passport.initialize());
-// app.use(passport.session());
+app.use(
+  cookieSession({
+    maxAge: 30 * 24 * 60 * 60 * 1000,
+    keys: [keys.cookieKey],
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
