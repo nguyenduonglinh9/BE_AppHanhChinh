@@ -4,7 +4,7 @@ const userController = {
   index: passport.authenticate("google", { scope: ["profile", "email"] }),
 
   index2: passport.authenticate("google", {
-    successRedirect: "/auth/callback/success",
+    successRedirect: "exp://192.168.1.129:8081",
     failureRedirect: "/auth/callback/failure",
   }),
 
