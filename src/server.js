@@ -46,16 +46,6 @@ app.set("views", path.join(__dirname, "views"));
 //router init
 route(app);
 
-//passport
-app.use(
-  cookieSession({
-    maxAge: 30 * 24 * 60 * 60 * 1000,
-    keys: [keys.cookieKey],
-  })
-);
-app.use(passport.initialize());
-app.use(passport.session());
-
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });

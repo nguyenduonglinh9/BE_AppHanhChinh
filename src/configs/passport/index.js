@@ -15,7 +15,7 @@ passport.use(
     {
       clientID: keys.googleClientID, // Your Credentials here.
       clientSecret: keys.googleClientSecret, // Your Credentials here.
-      callbackURL: "https://ndl-be-apphanhchinh.onrender.com/auth/callback",
+      callbackURL: "/auth/callback",
       proxy: true,
     },
     async (request, accessToken, refreshToken, profile, done) => {
@@ -30,8 +30,6 @@ passport.use(
         if (isExistUser) {
           return done(null, { ...isExistUser._doc, accessToken: accessToken });
         } else {
-          // var check_email =
-          //   "[a-zA-Z0-9]{0,}([.]?[a-zA-Z0-9]{1,})[@](fpt.edu.vn)";
           const profile_email = profile.emails[0].value;
           if (profile_email.indexOf("fpt.edu.vn") == -1) {
             return done(null, { code: 500, messgae: "Lỗi tài khoản" });
