@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const featureSchema = new Schema({
   name: { type: String },
   icon: { type: String },
+  content: { type: String },
 });
 
 module.exports = mongoose.model("option", featureSchema);
