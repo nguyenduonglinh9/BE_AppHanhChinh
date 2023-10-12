@@ -32,7 +32,7 @@ passport.use(
         } else {
           const profile_email = profile.emails[0].value;
           if (profile_email.indexOf("fpt.edu.vn") == -1) {
-            return done(null, false, {
+            return done(null, {
               code: 400,
               message: "Vui Lòng Chọn Tài Khoản FPT POLYTECHNIC",
             });
