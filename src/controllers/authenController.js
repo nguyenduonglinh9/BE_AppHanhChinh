@@ -13,15 +13,49 @@ const authenController = {
 
     const isUser = await User.findOne({ googleID: googleID });
 
+    console.log(isUser);
+
     if (isUser) {
-      const accessToken = jwt.sign(req.body, keys.accessTokenSecret);
+      const accessToken = jwt.sign({ ...isUser._doc }, keys.accessTokenSecret);
       res.json({
         code: 200,
-        message: "Đăng Nhập Thành Công !",
+        message: "Đã có tài khoản trong kho",
         accessToken: accessToken,
       });
     } else {
-      res.send("Lỗi");
+      try {
+        const newUser = new User({
+          googleID: req.body.googleID,
+          email: req.body.email,
+          name: req.body.name,
+          createdAt: Date.now(),
+          role: null,
+          imageURL: req.body.imageURL,
+          employeeType: null,
+        });
+
+        newUser.save();
+
+        const accessToken = jwt.sign(
+          {
+            googleID: req.body.googleID,
+            email: req.body.email,
+            name: req.body.name,
+            createdAt: Date.now(),
+            role: null,
+            imageURL: req.body.imageURL,
+            employeeType: null,
+          },
+          keys.accessTokenSecret
+        );
+        res.json({
+          code: 200,
+          message: "Tài khoản vừa tạo thành công !",
+          accessToken: accessToken,
+        });
+      } catch (error) {
+        res.json({ error });
+      }
     }
   },
 };
