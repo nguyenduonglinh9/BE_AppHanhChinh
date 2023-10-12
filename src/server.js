@@ -11,8 +11,7 @@ const keys = require("./key");
 require("./configs/passport");
 var app = express();
 //cors
-
-// app.use(cors());
+app.use(cors());
 
 app.use(require("body-parser").urlencoded({ extended: true }));
 app.use(

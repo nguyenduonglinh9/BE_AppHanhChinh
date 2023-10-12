@@ -20,6 +20,8 @@ const authenController = {
         message: "Đăng Nhập Thành Công !",
         accessToken: accessToken,
       });
+    } else {
+      res.send("Lỗi");
     }
   },
 };
