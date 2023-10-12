@@ -5,7 +5,8 @@ const userController = {
 
   index2: passport.authenticate("google", {
     successRedirect: "exp://192.168.1.129:8081",
-    failureRedirect: "/auth/callback/failure",
+    // successRedirect: "/auth/callback/success",
+    failureRedirect: "exp://192.168.1.129:8081",
   }),
 
   success: function (req, res, next) {
