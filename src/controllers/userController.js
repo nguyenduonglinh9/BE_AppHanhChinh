@@ -28,11 +28,8 @@ const userController = {
     }
   },
   failure: function (req, res, next) {
-    console.log(req);
-    res.json({
-      code: 500,
-      message: "Lỗi Máy Chủ Vui Lòng Thử Lại !",
-    });
+    // console.log(req);
+    res.json(req.user);
   },
 };
 
