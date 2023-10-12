@@ -28,11 +28,14 @@ passport.use(
         const isExistUser = await User.findOne({ googleID: profile.id });
 
         if (isExistUser) {
-          return done(null, { ...isExistUser._doc, accessToken: accessToken });
+          return done(null, isExistUser);
         } else {
           const profile_email = profile.emails[0].value;
           if (profile_email.indexOf("fpt.edu.vn") == -1) {
-            return done(null, { code: 500, messgae: "Lỗi tài khoản" });
+            return done(null, false, {
+              code: 400,
+              message: "Vui Lòng Chọn Tài Khoản FPT POLYTECHNIC",
+            });
           } else {
             const newUser = new User({
               googleID: profile.id,
@@ -45,15 +48,11 @@ passport.use(
 
             await newUser.save();
 
-            done(null, {
-              ...newUser._doc,
-              accessToken: accessToken,
-              code: 200,
-            });
+            done(null, newUser);
           }
         }
       } catch (error) {
-        done(error, false);
+        done(null, false, { message: error });
       }
     }
   )
