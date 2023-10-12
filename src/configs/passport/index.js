@@ -15,7 +15,7 @@ passport.use(
     {
       clientID: keys.googleClientID, // Your Credentials here.
       clientSecret: keys.googleClientSecret, // Your Credentials here.
-      callbackURL: "https://ndl-be-apphanhchinh.onrender.com/auth/callback",
+      callbackURL: "/auth/callback",
       proxy: true,
     },
     async (request, accessToken, refreshToken, profile, done) => {
@@ -32,7 +32,7 @@ passport.use(
         } else {
           const profile_email = profile.emails[0].value;
           if (profile_email.indexOf("fpt.edu.vn") == -1) {
-            return done(null, {
+            return done(null, false, {
               code: 400,
               message: "Vui Lòng Chọn Tài Khoản FPT POLYTECHNIC",
             });

@@ -3,6 +3,7 @@ const loginRouter = require("./login");
 const homeRouter = require("./home");
 const userRouter = require("./user");
 const featuresRouter = require("./features");
+const authenRouter = require("./Authen");
 const { createProxyMiddleware } = require("http-proxy-middleware");
 
 const route = (app) => {
@@ -24,6 +25,7 @@ const route = (app) => {
       changeOrigin: true,
     })
   );
+
   //render features
   app.use(
     "/features",
@@ -33,6 +35,8 @@ const route = (app) => {
       changeOrigin: true,
     })
   );
+  //login
+  app.use("/authentication", authenRouter);
   //home page
   app.use(
     "/",

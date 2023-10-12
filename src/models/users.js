@@ -8,6 +8,7 @@ const userSchema = new Schema({
   createdAt: { type: Date },
   role: { type: String, default: null },
   imageURL: { type: String },
+  employeeType: { type: String, default: null },
 });
 
 module.exports = mongoose.model("user", userSchema);
