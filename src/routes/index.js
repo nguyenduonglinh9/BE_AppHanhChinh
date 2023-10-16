@@ -16,16 +16,6 @@ const route = (app) => {
       changeOrigin: true,
     })
   );
-  // auth
-  app.use(
-    "/auth",
-    userRouter,
-    createProxyMiddleware({
-      target: "http://127.0.0.1:3001",
-      changeOrigin: true,
-    })
-  );
-
   //render features
   app.use(
     "/features",
@@ -37,6 +27,8 @@ const route = (app) => {
   );
   //login
   app.use("/authentication", authenRouter);
+  //get user
+  app.use("/user", userRouter);
   //home page
   app.use(
     "/",

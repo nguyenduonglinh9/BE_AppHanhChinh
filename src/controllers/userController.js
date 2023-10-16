@@ -1,24 +1,25 @@
 const passport = require("passport");
+const {
+  multipleMongooseToObject,
+  mongooseToObject,
+} = require("../utils/mongoose");
+const User = require("../models/users");
 
 const userController = {
-  index: passport.authenticate("google", { scope: ["profile", "email"] }),
-
-  index2: passport.authenticate("google", {
-    // successRedirect: "exp://192.168.1.129:8081",
-    // failureRedirect: "exp://192.168.1.129:8081",
-    successRedirect: "/auth/callback/success",
-    failureRedirect: "/auth/callback/failure",
-    failureMessage: true,
-  }),
-  success: function (req, res, next) {
-    if (!req.user) {
-      res.redirect("/auth/callback/failure");
-    } else {
-      res.send(req.user);
-    }
+  getAll: async (req, res, next) => {
+    await User.find({})
+      .then((users) => {
+        res.json(users);
+      })
+      .catch((err) => next(err));
   },
-  failure: function (req, res, next) {
-    res.send(req.session.message);
+
+  getOne: async (req, res, next) => {
+    await User.findOne({ googleID: req.params.id })
+      .then((user) => {
+        res.json(user);
+      })
+      .catch((err) => next(err));
   },
 };
 
