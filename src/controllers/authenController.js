@@ -13,8 +13,6 @@ const authenController = {
 
     const isUser = await User.findOne({ googleID: googleID });
 
-    console.log(isUser);
-
     if (isUser) {
       const accessToken = jwt.sign({ ...isUser._doc }, keys.accessTokenSecret);
       res.json({
