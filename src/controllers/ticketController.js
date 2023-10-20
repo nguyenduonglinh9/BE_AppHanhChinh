@@ -15,13 +15,14 @@ const ticketController = {
       .catch((err) => next(err));
   },
 
-  //   getOne: async (req, res, next) => {
-  //     await User.findOne({ googleID: req.params.id })
-  //       .then((user) => {
-  //         res.json(user);
-  //       })
-  //       .catch((err) => next(err));
-  //   },
+  getOne: async (req, res, next) => {
+    await ticket
+      .findOne({ id: req.params.id })
+      .then((ticket) => {
+        res.json(ticket);
+      })
+      .catch((err) => next(err));
+  },
 
   createOne: async (req, res, next) => {
     try {
@@ -42,7 +43,6 @@ const ticketController = {
       });
 
       await newTicket.save();
-
       res.json({
         code: 200,
         message: "Tạo Phiếu Hỗ Trợ Thành Công",
