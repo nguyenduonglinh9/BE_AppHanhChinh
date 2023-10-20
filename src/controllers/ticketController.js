@@ -38,6 +38,7 @@ const ticketController = {
         userID: req.body.userID,
         star: req.body.star,
         comment: req.body.comment,
+        type: req.body.type,
       });
 
       await newTicket.save();
