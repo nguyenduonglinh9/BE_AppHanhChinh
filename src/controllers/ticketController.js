@@ -45,6 +45,7 @@ const ticketController = {
       res.json({
         code: 200,
         message: "Tạo Phiếu Hỗ Trợ Thành Công",
+        infor: newTicket,
       });
     } catch (error) {
       res.json({

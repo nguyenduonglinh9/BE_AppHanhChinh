@@ -14,6 +14,7 @@ const ticketSchema = new Schema({
   userID: { type: String },
   star: { type: String },
   comment: { type: String },
+  type: { type: String },
 });
 
 module.exports = mongoose.model("ticket", ticketSchema);
