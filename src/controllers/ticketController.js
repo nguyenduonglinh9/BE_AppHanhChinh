@@ -17,7 +17,7 @@ const ticketController = {
 
   getOne: async (req, res, next) => {
     await ticket
-      .findOne({ id: req.params.id })
+      .findOne({ _id: req.params.slug })
       .then((ticket) => {
         res.json(ticket);
       })
