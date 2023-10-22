@@ -21,6 +21,16 @@ const userController = {
       })
       .catch((err) => next(err));
   },
+  getStaff: async (req, res, next) => {
+    await User.find({ role: "staff" })
+      .then((staffs) => res.json(staffs))
+      .catch((err) => next(err));
+  },
+  getAdmin: async (req, res, next) => {
+    await User.find({ role: "admin" })
+      .then((admins) => res.json(admins))
+      .catch((err) => next(err));
+  },
 };
 
 module.exports = userController;
