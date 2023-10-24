@@ -10,6 +10,9 @@ const roomRouter = require("./Room");
 const { createProxyMiddleware } = require("http-proxy-middleware");
 const multer = require("multer");
 const uploadFile = require("../configs/Multer/index");
+const fs = require("fs");
+const path = require("path");
+const imageModal = require("../models/images");
 
 const route = (app) => {
   //login page
@@ -47,9 +50,10 @@ const route = (app) => {
       console.log(req.body); // Body
       res.json({ code: 200, message: req.file.path });
     } catch (error) {
-      res.status(500).send("Error");
+      res.status(500).send(error);
     }
   });
+
   //home page
   app.use(
     "/",
