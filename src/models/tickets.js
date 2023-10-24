@@ -7,14 +7,16 @@ const ticketSchema = new Schema({
   room: { type: String },
   images: [],
   status: { type: String, default: "pending" },
-  createdAt: { type: String, default: null },
-  receivedAt: { type: String, default: null },
-  completedAt: { type: String, default: null },
+  createdAt: { type: Date },
+  receivedAt: { type: Date },
+  completedAt: { type: Date },
   staffID: { type: String },
   userID: { type: String },
   star: { type: String },
   comment: { type: String },
   type: { type: String },
+  note: { type: String },
+  time: { type: String },
 });
 
 module.exports = mongoose.model("ticket", ticketSchema);

@@ -40,6 +40,8 @@ const ticketController = {
         star: req.body.star,
         comment: req.body.comment,
         type: req.body.type,
+        note: req.body.note,
+        time: req.body.time,
       });
 
       await newTicket.save();
