@@ -8,6 +8,9 @@ const ticketRouter = require("./ticket");
 const buildingRouter = require("./build");
 const roomRouter = require("./Room");
 const { createProxyMiddleware } = require("http-proxy-middleware");
+const { storage } = require("../../storage/storage");
+const multer = require("multer");
+const upload = multer({ storage });
 
 const route = (app) => {
   //login page
@@ -38,6 +41,11 @@ const route = (app) => {
   app.use("/building", buildingRouter);
   //room
   app.use("/room", roomRouter);
+  //upload
+  app.use("/upload", upload.array("images"), (req, res) => {
+    console.log(req);
+    res.send("Done");
+  });
   //home page
   app.use(
     "/",
