@@ -44,7 +44,7 @@ const route = (app) => {
   //upload
   app.use("/upload", upload.array("images"), (req, res) => {
     console.log(req);
-    res.send("Done");
+    res.json({ message: "done" });
   });
   //home page
   app.use(
