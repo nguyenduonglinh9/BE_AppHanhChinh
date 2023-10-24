@@ -13,6 +13,10 @@ var app = express();
 //cors
 app.use(cors());
 
+//static file
+app.use(express.static(path.join(__dirname, "uploads")));
+console.log(path.join(__dirname, "uploads"));
+
 app.use(require("body-parser").urlencoded({ extended: true }));
 app.use(
   require("express-session")({
