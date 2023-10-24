@@ -5,6 +5,8 @@ const userRouter = require("./user");
 const featuresRouter = require("./features");
 const authenRouter = require("./Authen");
 const ticketRouter = require("./ticket");
+const buildingRouter = require("./build");
+const roomRouter = require("./Room");
 const { createProxyMiddleware } = require("http-proxy-middleware");
 
 const route = (app) => {
@@ -32,6 +34,10 @@ const route = (app) => {
   app.use("/user", userRouter);
   //ticket
   app.use("/ticket", ticketRouter);
+  //builds
+  app.use("/building", buildingRouter);
+  //room
+  app.use("/room", roomRouter);
   //home page
   app.use(
     "/",

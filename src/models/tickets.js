@@ -17,6 +17,7 @@ const ticketSchema = new Schema({
   type: { type: String },
   note: { type: String },
   time: { type: String },
+  build: { type: String },
 });
 
 module.exports = mongoose.model("ticket", ticketSchema);
