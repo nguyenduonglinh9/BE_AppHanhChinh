@@ -5,6 +5,6 @@ const middleWareAuth = require("../middlewares/auth");
 
 // router.use("/create", middleWareAuth, ticketController.createOne);
 // router.use("/:slug", ticketController.getOne);
-router.use("/", buildController.getAll);
+router.use("/", middleWareAuth, buildController.getAll);
 
 module.exports = router;
