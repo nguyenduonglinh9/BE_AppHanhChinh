@@ -8,9 +8,8 @@ const ticketRouter = require("./ticket");
 const buildingRouter = require("./build");
 const roomRouter = require("./Room");
 const { createProxyMiddleware } = require("http-proxy-middleware");
-const { storage } = require("../../storage/storage");
 const multer = require("multer");
-const upload = multer({ storage });
+const uploadFile = require("../configs/Multer/index");
 
 const route = (app) => {
   //login page
@@ -42,11 +41,13 @@ const route = (app) => {
   //room
   app.use("/room", roomRouter);
   //upload
-  app.use("/upload", upload.array("images"), (req, res) => {
-    if (req.files) {
-      res.json({ message: req.files[0].path });
-    } else {
-      res.json({ message: "LỖI" });
+  app.use("/upload", uploadFile.single("file"), (req, res, next) => {
+    try {
+      console.log(req.file); // File which is uploaded in /uploads folder.
+      console.log(req.body); // Body
+      res.json({ code: 200, message: req.file.path });
+    } catch (error) {
+      res.status(500).send("Error");
     }
   });
   //home page
