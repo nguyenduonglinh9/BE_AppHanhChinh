@@ -46,9 +46,9 @@ const route = (app) => {
   //upload
   app.use("/upload", uploadFile.array("images"), (req, res, next) => {
     try {
-      console.log(req.file); // File which is uploaded in /uploads folder.
+      console.log(req.files); // File which is uploaded in /uploads folder.
       console.log(req.body); // Body
-      res.json({ code: 200, message: req.file.path });
+      res.json({ code: 200, message: req.files });
     } catch (error) {
       res.status(500).send(error);
     }
