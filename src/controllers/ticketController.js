@@ -43,6 +43,7 @@ const ticketController = {
         note: req.body.note,
         time: req.body.time,
         build: req.body.build,
+        reason: req.body.reason,
       });
 
       await newTicket.save();
