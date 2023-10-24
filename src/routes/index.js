@@ -44,7 +44,7 @@ const route = (app) => {
   //room
   app.use("/room", roomRouter);
   //upload
-  app.use("/upload", uploadFile.single("file"), (req, res, next) => {
+  app.use("/upload", uploadFile.array("images"), (req, res, next) => {
     try {
       console.log(req.file); // File which is uploaded in /uploads folder.
       console.log(req.body); // Body
