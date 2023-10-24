@@ -44,7 +44,9 @@ const route = (app) => {
   //upload
   app.use("/upload", upload.array("images"), (req, res) => {
     if (req.files) {
-      res.send(req.files[0].path);
+      res.json({ message: req.files[0].path });
+    } else {
+      res.json({ message: "LỖI" });
     }
   });
   //home page
