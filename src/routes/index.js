@@ -43,8 +43,9 @@ const route = (app) => {
   app.use("/room", roomRouter);
   //upload
   app.use("/upload", upload.array("images"), (req, res) => {
-    console.log(req);
-    res.json({ message: "done" });
+    if (req.files) {
+      res.send(req.files[0].path);
+    }
   });
   //home page
   app.use(
