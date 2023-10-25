@@ -59,6 +59,18 @@ const ticketController = {
       });
     }
   },
+  updateOne: async (req, res, next) => {
+    try {
+      await ticket.findByIdAndUpdate(req.params.slug, {
+        status: req.body.status,
+        receivedAt: req.body.receivedAt,
+      });
+
+      res.json({ code: 200, message: "Cập Nhật Thành Công" });
+    } catch (error) {
+      res.json({ code: 400, message: "LỖI : " + error });
+    }
+  },
 };
 
 module.exports = ticketController;
