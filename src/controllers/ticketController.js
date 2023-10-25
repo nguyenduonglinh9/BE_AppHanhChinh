@@ -64,7 +64,7 @@ const ticketController = {
       await ticket.findByIdAndUpdate(req.params.slug, {
         status: req.body.status,
         receivedAt: req.body.receivedAt,
-        userID: req.body.userID,
+        staffID: req.body.staffID,
       });
 
       res.json({ code: 200, message: "Cập Nhật Thành Công" });
