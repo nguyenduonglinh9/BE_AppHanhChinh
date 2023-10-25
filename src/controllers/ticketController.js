@@ -64,6 +64,7 @@ const ticketController = {
       await ticket.findByIdAndUpdate(req.params.slug, {
         status: req.body.status,
         receivedAt: req.body.receivedAt,
+        completedAt: req.body.completedAt,
         staffID: req.body.staffID,
         reason: req.body.reason,
         time: req.body.time,
