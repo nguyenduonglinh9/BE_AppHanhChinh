@@ -13,6 +13,8 @@ const uploadFile = require("../configs/Multer/index");
 const fs = require("fs");
 const path = require("path");
 const imageModal = require("../models/images");
+var upload = multer({ dest: "uploads" });
+const fileUpload = require("../configs/Cloudinary/index");
 
 const route = (app) => {
   //login page
@@ -44,14 +46,15 @@ const route = (app) => {
   //room
   app.use("/room", roomRouter);
   //upload
-  app.use("/upload", uploadFile.array("images"), (req, res, next) => {
-    try {
-      console.log(req.files); // File which is uploaded in /uploads folder.
-      console.log(req.body); // Body
-      res.json({ code: 200, message: req.files });
-    } catch (error) {
-      res.status(500).send(error);
+  app.use("/upload", fileUpload.array("images"), (req, res, next) => {
+    if (!req.files) {
+      res.json({
+        code: 400,
+        message: "Không có file được chọn",
+      });
     }
+
+    res.json({ code: 200, message: req.files });
   });
 
   //home page
