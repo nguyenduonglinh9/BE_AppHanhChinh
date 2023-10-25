@@ -65,6 +65,9 @@ const ticketController = {
         status: req.body.status,
         receivedAt: req.body.receivedAt,
         staffID: req.body.staffID,
+        reason: req.body.reason,
+        time: req.body.time,
+        note: req.body.note,
       });
 
       res.json({ code: 200, message: "Cập Nhật Thành Công" });
