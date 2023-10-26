@@ -16,7 +16,7 @@ const roomController = {
   },
   getOne: async (req, res, next) => {
     await room
-      .findOne({ id: req.params.id })
+      .findOne({ _id: req.params.id })
       .then((room) => {
         res.json(room);
       })
