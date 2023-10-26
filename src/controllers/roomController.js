@@ -22,6 +22,24 @@ const roomController = {
       })
       .catch((err) => next(err));
   },
+  updateOne: async (req, res, next) => {
+    try {
+      await room.findByIdAndUpdate(req.params.id, {
+        name: req.body.name,
+        isReady: req.body.isReady,
+        assets: req.body.assets,
+      });
+      res.json({
+        code: 200,
+        message: "success",
+      });
+    } catch (error) {
+      res.json({
+        code: 400,
+        message: error,
+      });
+    }
+  },
 };
 
 module.exports = roomController;
