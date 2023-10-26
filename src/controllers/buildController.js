@@ -14,6 +14,14 @@ const buildController = {
       })
       .catch((err) => next(err));
   },
+  getOne: async (req, res, next) => {
+    await building
+      .findOne({ _id: req.params.id })
+      .then((building) => {
+        res.json(building);
+      })
+      .catch((err) => next(err));
+  },
 };
 
 module.exports = buildController;
