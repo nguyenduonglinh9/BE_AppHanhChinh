@@ -14,6 +14,14 @@ const roomController = {
       })
       .catch((err) => next(err));
   },
+  getOne: async (req, res, next) => {
+    await room
+      .findOne({ id: req.params.id })
+      .then((room) => {
+        res.json(room);
+      })
+      .catch((err) => next(err));
+  },
 };
 
 module.exports = roomController;
