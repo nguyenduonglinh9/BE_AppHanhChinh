@@ -31,6 +31,27 @@ const userController = {
       .then((admins) => res.json(admins))
       .catch((err) => next(err));
   },
+  updateUser: async (req, res, next) => {
+    try {
+      const newUser = await User.findOneAndUpdate(
+        { googleID: req.params.id },
+        {
+          role: req.body.role,
+          employeeType: req.body.employeeType,
+        },
+        {
+          new: true,
+        }
+      );
+      if (newUser) {
+        res.json({ code: 200, message: newUser });
+      } else {
+        res.json({ code: 400, message: "error" });
+      }
+    } catch (error) {
+      res.json({ code: 400, message: "LỖI : " + error });
+    }
+  },
 };
 
 module.exports = userController;
