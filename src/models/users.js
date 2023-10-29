@@ -9,6 +9,7 @@ const userSchema = new Schema({
   role: { type: String, default: null },
   imageURL: { type: String },
   employeeType: { type: String, default: null },
+  phone: { type: String },
 });
 
 module.exports = mongoose.model("user", userSchema);

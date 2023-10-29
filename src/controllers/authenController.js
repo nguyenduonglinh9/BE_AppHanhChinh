@@ -31,6 +31,7 @@ const authenController = {
           role: null,
           imageURL: req.body.imageURL,
           employeeType: null,
+          phone: "",
         });
 
         newUser.save();
@@ -44,6 +45,7 @@ const authenController = {
             role: null,
             imageURL: req.body.imageURL,
             employeeType: null,
+            phone: "",
           },
           keys.accessTokenSecret
         );
@@ -59,6 +61,7 @@ const authenController = {
             role: null,
             imageURL: req.body.imageURL,
             employeeType: null,
+            phone: "",
           },
         });
       } catch (error) {
