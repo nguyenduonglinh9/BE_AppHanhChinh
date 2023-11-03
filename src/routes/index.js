@@ -1,4 +1,3 @@
-const passport = require("passport");
 const loginRouter = require("./login");
 const homeRouter = require("./home");
 const userRouter = require("./user");
@@ -7,13 +6,10 @@ const authenRouter = require("./Authen");
 const ticketRouter = require("./ticket");
 const buildingRouter = require("./build");
 const roomRouter = require("./Room");
+const issuesTypeRouter = require("./issuestypes");
+const issueRouter = require("./issues");
 const { createProxyMiddleware } = require("http-proxy-middleware");
 const multer = require("multer");
-const uploadFile = require("../configs/Multer/index");
-const fs = require("fs");
-const path = require("path");
-const imageModal = require("../models/images");
-var upload = multer({ dest: "uploads" });
 const fileUpload = require("../configs/Cloudinary/index");
 
 const route = (app) => {
@@ -57,15 +53,14 @@ const route = (app) => {
     res.json({ code: 200, message: req.files });
   });
 
+  //issues Type
+  app.use("/issuestype", issuesTypeRouter);
+  //issues
+  app.use("/issues", issueRouter);
   //home page
-  app.use(
-    "/",
-    homeRouter,
-    createProxyMiddleware({
-      target: "http://127.0.0.1:3001",
-      changeOrigin: true,
-    })
-  );
+  app.use("/", (req, res, next) => {
+    res.send("HELLO");
+  });
 };
 
 module.exports = route;
