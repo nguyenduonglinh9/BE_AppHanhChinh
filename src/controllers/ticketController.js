@@ -40,10 +40,12 @@ const ticketController = {
         star: req.body.star,
         comment: req.body.comment,
         type: req.body.type,
+        typeID: req.body.typeID,
         note: req.body.note,
         time: req.body.time,
         build: req.body.build,
         reason: req.body.reason,
+        isTime: req.body.isTime,
       });
 
       await newTicket.save();

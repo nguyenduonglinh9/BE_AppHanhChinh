@@ -15,10 +15,12 @@ const ticketSchema = new Schema({
   star: { type: String },
   comment: { type: String },
   type: { type: String },
+  typeID: { type: String },
   note: { type: String },
   time: { type: String },
   build: { type: String },
   reason: { type: String },
+  isTime: { type: String },
 });
 
 module.exports = mongoose.model("ticket", ticketSchema);
