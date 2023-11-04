@@ -73,6 +73,7 @@ const ticketController = {
         note: req.body.note,
         star: req.body.star,
         comment: req.body.comment,
+        isTime: req.body.isTime,
       });
 
       res.json({ code: 200, message: "Cập Nhật Thành Công" });
