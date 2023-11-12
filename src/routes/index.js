@@ -8,6 +8,7 @@ const buildingRouter = require("./build");
 const roomRouter = require("./Room");
 const issuesTypeRouter = require("./issuestypes");
 const issueRouter = require("./issues");
+const historyRouter = require("./history");
 const { createProxyMiddleware } = require("http-proxy-middleware");
 const multer = require("multer");
 const fileUpload = require("../configs/Cloudinary/index");
@@ -57,6 +58,8 @@ const route = (app) => {
   app.use("/issuestype", issuesTypeRouter);
   //issues
   app.use("/issues", issueRouter);
+  //histories
+  app.use("/histories", historyRouter);
   //home page
   app.use("/", (req, res, next) => {
     res.send("HELLO");
